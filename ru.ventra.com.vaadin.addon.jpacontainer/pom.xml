@@ -9,7 +9,7 @@
 	
 	<groupId>com.vaadin.addon</groupId>
 	<artifactId>ru.ventra.com.vaadin.addon.jpacontainer</artifactId>
-	<version>3.0.0.AGPL</version>
+	<version>3.0.1.AGPL-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	
 	<name>Vaadin JPAContainer Addon - OSGi bundle</name>
@@ -25,7 +25,7 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:http://192.168.11.89:8080/ru.ventra.ebr/tags/ru.ventra.com.vaadin.addon.jpacontainer-3.0.0.AGPL</connection>
+		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
 	</scm>
 	
 	<dependencyManagement>
