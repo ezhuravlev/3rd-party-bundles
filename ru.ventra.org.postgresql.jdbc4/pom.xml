@@ -9,7 +9,7 @@
 	
 	<groupId>org.postgresql</groupId>
   	<artifactId>ru.ventra.org.postgresql.jdbc4</artifactId>
-  	<version>9.2.1002</version>
+  	<version>9.2.1003-SNAPSHOT</version>
   	<packaging>bundle</packaging>
 	
 	<name>PostgreSQL JDBC Driver - OSGi bundle</name>
@@ -22,7 +22,7 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:http://192.168.11.89:8080/ru.ventra.ebr/tags/ru.ventra.org.postgresql.jdbc4-9.2.1002</connection>
+		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
 	</scm>
 	
 	<dependencyManagement>
