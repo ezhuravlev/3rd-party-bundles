@@ -3,7 +3,7 @@
 	
 	<groupId>ru.ventra.ebr</groupId>
 	<artifactId>ru.ventra.ebr.bundle</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	
 	<name>Parent POM for repacking thirdparty artifacts into OSGi bundles</name>
@@ -24,7 +24,7 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
+		<connection>scm:svn:http://192.168.11.89:8080/ru.ventra.ebr/tags/ru.ventra.ebr.bundle-1.0.0</connection>
 	</scm>
 
 	<build>
@@ -166,7 +166,7 @@
 	            						</goals>
 	            					</pluginExecutionFilter>
 	            					<action>
-	            						<ignore></ignore>
+	            						<ignore />
 	            					</action>
 	            				</pluginExecution>
 	            			</pluginExecutions>
