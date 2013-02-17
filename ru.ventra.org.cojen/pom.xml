@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>ru.ventra.ebr</groupId>
+		<artifactId>ru.ventra.ebr.bundle</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>org.cojen</groupId>
+	<artifactId>ru.ventra.org.cojen</artifactId>
+	<version>2.2.3-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	
+	<name>Cojen - OSGi bundle</name>
+	<description>Cojen - Bytecode Generation and Disassembly Tools</description>
+	
+	<properties>
+		<original.groupId>org.cojen</original.groupId>
+		<original.artifactId>cojen</original.artifactId>
+		<original.version>2.2.3</original.version>
+	</properties>
+	
+	<scm>
+		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>${original.groupId}</groupId>
+			<artifactId>${original.artifactId}</artifactId>
+			<version>${original.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${original.groupId}</groupId>
+			<artifactId>${original.artifactId}</artifactId>
+			<version>${original.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Export-Package>
+							org.cojen.*; version=${project.version}
+						</Export-Package>
+						<Import-Package>
+							*
+						</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+	        <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+	      	</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>ru.ventra.ebr.public</id>
+			<name>Ventra Enterprise Bundle Repository - Public Releases</name>
+			<url>https://ebr.ventra.ru/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>

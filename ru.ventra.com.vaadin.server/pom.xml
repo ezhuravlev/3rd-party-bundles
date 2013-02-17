@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>ru.ventra.ebr</groupId>
+		<artifactId>ru.ventra.ebr.bundle</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>com.vaadin</groupId>
+	<artifactId>ru.ventra.com.vaadin.server</artifactId>
+	<version>7.0.0-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	
+	<name>Vaadin Server - OSGi bundle</name>
+	<description>Vaadin Server - MANIFEST.MF fixes</description>
+	
+	<properties>
+		<original.groupId>com.vaadin</original.groupId>
+		<original.artifactId>vaadin-server</original.artifactId>
+		<original.version>7.0.0</original.version>
+		
+		<javax.portlet>2.0.0.v20110525</javax.portlet>
+		<javax.servlet>3.0.0.v201103241009</javax.servlet>
+		<javax.validation>1.0.0.GA</javax.validation>
+		<com.google.appengine>1.2.8</com.google.appengine>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>${original.groupId}</groupId>
+				<artifactId>${original.artifactId}</artifactId>
+				<version>${original.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<artifactId>vaadin-shared</artifactId>
+				<groupId>com.vaadin</groupId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<artifactId>vaadin-theme-compiler</artifactId>
+				<groupId>com.vaadin</groupId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<artifactId>jsoup</artifactId>
+				<groupId>org.jsoup</groupId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet</artifactId>
+				<version>${javax.servlet}</version>
+			</dependency>
+			<dependency>
+			    <groupId>javax.portlet</groupId>
+			    <artifactId>com.springsource.javax.portlet</artifactId>
+			    <version>${javax.portlet}</version>
+			    <optional>true</optional>
+			</dependency>
+			<dependency>
+			    <groupId>javax.validation</groupId>
+			    <artifactId>com.springsource.javax.validation</artifactId>
+				<version>${javax.validation}</version>
+			    <optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-api-1.0-sdk</artifactId>
+				<version>${com.google.appengine}</version>
+			    <optional>true</optional>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>${original.groupId}</groupId>
+			<artifactId>${original.artifactId}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${original.groupId}</groupId>
+			<artifactId>${original.artifactId}</artifactId>
+			<version>${original.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax.portlet</groupId>
+		    <artifactId>com.springsource.javax.portlet</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>com.springsource.javax.validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<excludeDependencies>vaadin-shared,vaadin-shared-deps,vaadin-theme-compiler,*;classifier=sources</excludeDependencies>
+					<instructions>
+						<Export-Package>
+							com.google.gwt.*;version=${project.version},
+							com.vaadin.*;version=${project.version},
+							VAADIN.*;version=${project.version}
+						</Export-Package>
+						<Import-Package>
+							com.google.appengine.*;version="[1.2.0,2.0.0)";resolution:=optional,
+							com.google.apphosting.*;version="[1.2.0,2.0.0)";resolution:=optional,
+							com.google.gwt.dev.util.*;resolution:=optional,
+							com.google.gwt.thirdparty.debugging.sourcemap.*;resolution:=optional,
+							com.google.gwt.util.tools.shared.*;resolution:=optional,
+							com.google.gwt.*;version="${project.version}",
+							com.vaadin.*;version="${project.version}",
+							javax.portlet.*;resolution:=optional,
+							javax.servlet.*;version="[2.4.0,4.0.0)",
+							javax.sql.*;version="0";resolution:=optional,
+							javax.validation.*;version="[1.0.0,2.0.0)";resolution:=optional,
+							org.json;version="[0.0.20080701,1.0.0)";resolution:=optional,
+							org.jsoup.*;resolution:=optional,
+							com.liferay.*;version="[6.0.0,7.0.0)";resolution:=optional,
+							sun.misc.*;version="0";resolution:=optional,
+							*;version="0"
+						</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>			
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+	      	</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>ru.ventra.ebr.public</id>
+			<name>Ventra Enterprise Bundle Repository - Public Releases</name>
+			<url>https://ebr.ventra.ru/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>

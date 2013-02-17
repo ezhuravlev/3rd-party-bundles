@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>ru.ventra.ebr</groupId>
+		<artifactId>ru.ventra.ebr.bundle</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<groupId>org.postgresql</groupId>
+  	<artifactId>ru.ventra.org.postgresql.jdbc4</artifactId>
+  	<version>9.2.1002-SNAPSHOT</version>
+  	<packaging>bundle</packaging>
+	
+	<name>PostgreSQL JDBC Driver - OSGi bundle</name>
+	<description>PostgreSQL JDBC Driver - JDBC Type 4 Driver</description>
+	
+	<properties>
+		<org.postgresql>9.2.1002.jdbc4</org.postgresql>
+		<javax.transaction>1.1.0</javax.transaction>
+		<javax.xml.stream>1.0.1</javax.xml.stream>
+	</properties>
+	
+	<scm>
+		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
+	</scm>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+			    <groupId>org.postgresql</groupId>
+			    <artifactId>org.postgresql.jdbc4</artifactId>
+			    <version>${org.postgresql}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+			    <groupId>javax.transaction</groupId>
+			    <artifactId>com.springsource.javax.transaction</artifactId>
+			    <version>${javax.transaction}</version>
+			    <optional>true</optional>
+			</dependency>
+			<dependency>
+			    <groupId>javax.xml.stream</groupId>
+			    <artifactId>com.springsource.javax.xml.stream</artifactId>
+			    <version>${javax.xml.stream}</version>
+			    <optional>true</optional>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+    		<artifactId>org.postgresql.jdbc4</artifactId>
+    	</dependency>
+		<dependency>
+		    <groupId>javax.transaction</groupId>
+		    <artifactId>com.springsource.javax.transaction</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.stream</groupId>
+		    <artifactId>com.springsource.javax.xml.stream</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Export-Package>
+                            org.postgresql.*;version=${project.version}
+                        </Export-Package>
+                        <Import-Package>
+                            javax.xml.stream.*;resolution:=optional,
+                            org.ietf.jgss.*;version="0";resolution:=optional,
+                            javax.crypto.*;version="0";resolution:=optional,
+                            javax.security.*;version="0";resolution:=optional,
+                            javax.transaction.*;resolution:=optional,
+                            *;version="0"
+                        </Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>ru.ventra.ebr.public</id>
+			<name>Ventra Enterprise Bundle Repository - Public Releases</name>
+			<url>https://ebr.ventra.ru/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>
