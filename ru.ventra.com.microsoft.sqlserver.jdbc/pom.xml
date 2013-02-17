@@ -17,6 +17,7 @@
 	<description>MSSQL JDBC Driver - JDBC Type 4 Driver</description>
 	
 	<properties>
+		<com.microsoft.sqlserver.jdbc>4.0</com.microsoft.sqlserver.jdbc>
 		<javax.transaction>1.1.0</javax.transaction>
 	</properties>
 	
@@ -29,7 +30,7 @@
 			<dependency>
 				<groupId>com.microsoft.sqlserver</groupId>
 			    <artifactId>com.microsoft.sqlserver.jdbc</artifactId>
-			    <version>${project.version}</version>
+			    <version>${com.microsoft.sqlserver.jdbc}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
