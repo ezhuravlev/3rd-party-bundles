@@ -9,7 +9,7 @@
 
 	<groupId>com.microsoft.sqlserver</groupId>
 	<artifactId>ru.ventra.com.microsoft.sqlserver.jdbc</artifactId>
-	<version>4.0</version>
+	<version>4.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	
 	<name>MSSQL JDBC Driver - OSGi bundle</name>
@@ -21,7 +21,7 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:http://192.168.11.89:8080/ru.ventra.ebr/tags/ru.ventra.com.microsoft.sqlserver.jdbc-4.0</connection>
+		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
 	</scm>
 	
 	<dependencyManagement>
