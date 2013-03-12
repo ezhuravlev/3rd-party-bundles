@@ -20,10 +20,6 @@
 		<original.artifactId>cojen</original.artifactId>
 		<original.version>2.2.3</original.version>
 	</properties>
-	
-	<scm>
-		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
-	</scm>
 
 	<dependencies>
 		<dependency>
@@ -72,12 +68,6 @@
 			<id>ru.ventra.ebr.public</id>
 			<name>Ventra Enterprise Bundle Repository - Public Releases</name>
 			<url>https://ebr.ventra.ru/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 </project>

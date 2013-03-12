@@ -27,10 +27,6 @@
 		<org.slf4j>1.5.11</org.slf4j>
 	</properties>
 	
-	<scm>
-		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
-	</scm>
-	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -110,12 +106,6 @@
 			<id>ru.ventra.ebr.public</id>
 			<name>Ventra Enterprise Bundle Repository - Public Releases</name>
 			<url>https://ebr.ventra.ru/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 </project>
