@@ -1,124 +1,52 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>ru.ventra.ebr</groupId>
 	<artifactId>ru.ventra.ebr.bundle</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<name>Parent POM for repacking thirdparty artifacts into OSGi bundles</name>
 
 	<properties>
 		<java.version>1.6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<maven-compiler-plugin>3.0</maven-compiler-plugin>
-		<maven-bundle-plugin>2.3.7</maven-bundle-plugin>
-		<maven-resources-plugin>2.6</maven-resources-plugin>
-		<maven-surefire-plugin>2.13</maven-surefire-plugin>
-		<maven-jar-plugin>2.4</maven-jar-plugin>
-		<maven-release-plugin>2.4</maven-release-plugin>
 		<maven-build-helper-plugin>1.7</maven-build-helper-plugin>
-				
-		<vcs.repository.url>http://192.168.11.89:8080/ru.ventra.ebr</vcs.repository.url>
+		<maven-bundle-plugin>2.3.7</maven-bundle-plugin>
+		<maven-clean-plugin>2.5</maven-clean-plugin>
+		<maven-compiler-plugin>3.0</maven-compiler-plugin>
+		<maven-deploy-plugin>2.7</maven-deploy-plugin>
+		<maven-jar-plugin>2.4</maven-jar-plugin>
+		<maven-javadoc-plugin>2.9</maven-javadoc-plugin>
+		<maven-release-plugin>2.2.1</maven-release-plugin>
+		<maven-resources-plugin>2.6</maven-resources-plugin>
+		<maven-source-plugin>2.2.1</maven-source-plugin>
+		<maven-surefire-plugin>2.14</maven-surefire-plugin>
 	</properties>
-	
+
+	<organization>
+		<name>Ventra Employment</name>
+		<url>http://ventra.ru</url>
+	</organization>
+
 	<scm>
-		<connection>scm:svn:${vcs.repository.url}/trunk/${project.artifactId}</connection>
+		<connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
 	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>ru.ventra.ebr.public</id>
+			<url>https://ebr.ventra.ru/public</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin}</version>
-					<configuration>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${maven-resources-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven-surefire-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>${maven-jar-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${maven-release-plugin}</version>
-					<configuration>
-						<branchBase>${vcs.repository.url}/branches</branchBase>
-						<tagBase>${vcs.repository.url}/tags</tagBase>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>maven-bundle-plugin</artifactId>
-					<version>${maven-bundle-plugin}</version>
-					<extensions>true</extensions>
-					<configuration>
-						<excludeDependencies>*;classifier=sources</excludeDependencies>
-						<instructions>
-							<obrRepository>NONE</obrRepository>
-							<manifestLocation>META-INF</manifestLocation>
-							<Bundle-Vendor>${project.organization.name}</Bundle-Vendor>
-							<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-							<Bundle-Name>${project.name}</Bundle-Name>
-							<Bundle-RequiredExecutionEnvironment>
-								JavaSE-1.6
-							</Bundle-RequiredExecutionEnvironment>
-	                    	<_removeheaders>
-	                    		Bnd-LastModified,
-	                    		Built-By,
-	                    		Build-Jdk,
-	                    		Bundle-DocURL,
-	                    		Created-By,
-	                    		Ignore-Package,
-	                    		Include-Resource,
-	                    		Private-Package,
-	                    		Tool
-	                    	</_removeheaders>
-							<_versionpolicy>
-						    	[$(version;==;$(@)),$(version;+;$(@)))
-						    </_versionpolicy>
-						</instructions>
-	                    <archive>
-                        	<addMavenDescriptor>false</addMavenDescriptor>
-	                    </archive>
-					</configuration>
-				</plugin>
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-dependency-plugin</artifactId>
-	                <executions>
-	          			<execution>
-							<id>copy-dependencies</id>
-							<phase>package</phase>
-							<goals>
-								<goal>copy-dependencies</goal>
-							</goals>
-							<configuration>
-								<includeArtifactIds>${original.artifactId}</includeArtifactIds>
-								<classifier>sources</classifier>
-							</configuration>
-						</execution>
-	        		</executions>
-	            </plugin>
-	            <plugin>
-			        <groupId>org.codehaus.mojo</groupId>
+					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>${maven-build-helper-plugin}</version>
 					<executions>
@@ -139,60 +67,148 @@
 							</configuration>
 						</execution>
 					</executions>
-		      	</plugin>
-	            <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-	            <plugin>
-	            	<groupId>org.eclipse.m2e</groupId>
-	            	<artifactId>lifecycle-mapping</artifactId>
-	            	<version>1.0.0</version>
-	            	<configuration>
-	            		<lifecycleMappingMetadata>
-	            			<pluginExecutions>
-	            				<pluginExecution>
-	            					<pluginExecutionFilter>
-	            						<groupId>
-	            							org.apache.maven.plugins
-	            						</groupId>
-	            						<artifactId>
-	            							maven-dependency-plugin
-	            						</artifactId>
-	            						<versionRange>
-	            							[2.1,)
-	            						</versionRange>
-	            						<goals>
-	            							<goal>
-	            								copy-dependencies
-	            							</goal>
-	            						</goals>
-	            					</pluginExecutionFilter>
-	            					<action>
-	            						<ignore />
-	            					</action>
-	            				</pluginExecution>
-	            			</pluginExecutions>
-	            		</lifecycleMappingMetadata>
-	            	</configuration>
-	            </plugin>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${maven-bundle-plugin}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<excludeDependencies>*;classifier=sources</excludeDependencies>
+						<instructions>
+							<obrRepository>NONE</obrRepository>
+							<manifestLocation>META-INF</manifestLocation>
+							<Bundle-Vendor>${project.organization.name}</Bundle-Vendor>
+							<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-Name>${project.name}</Bundle-Name>
+							<Bundle-RequiredExecutionEnvironment>
+								JavaSE-1.6
+							</Bundle-RequiredExecutionEnvironment>
+							<_removeheaders>
+								Bnd-LastModified,
+								Built-By,
+								Build-Jdk,
+								Bundle-DocURL,
+								Created-By,
+								Ignore-Package,
+								Include-Resource,
+								Private-Package,
+								Tool
+							</_removeheaders>
+							<_versionpolicy>
+								[$(version;==;$(@)),$(version;+;$(@)))
+							</_versionpolicy>
+						</instructions>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven-clean-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin}</version>
+					<configuration>
+						<source>${project.build.jre}</source>
+						<target>${project.build.jre}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven-deploy-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven-jar-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy-dependencies</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-dependencies</goal>
+							</goals>
+							<configuration>
+								<includeArtifactIds>${original.artifactId}</includeArtifactIds>
+								<classifier>sources</classifier>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.1,)
+										</versionRange>
+										<goals>
+											<goal>
+												copy-dependencies
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<organization>
-		<name>Ventra Employment</name>
-		<url>http://ventra.ru</url>
-	</organization>
-
-	<issueManagement>
-		<url>https://redmine.ventra.ru</url>
-		<system>Redmine</system>
-	</issueManagement>
-
-	<distributionManagement>
-		<repository>
-			<id>ru.ventra.ebr.public</id>
-			<url>https://ebr.ventra.ru/public</url>
-		</repository>
-	</distributionManagement>
 
 	<repositories>
 		<repository>
@@ -231,4 +247,23 @@
 			<url>https://ebr.ventra.ru/external</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-release-plugin</artifactId>
+							<configuration>
+								<arguments>-f ${project.artifactId}/pom.xml</arguments>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
 </project>
