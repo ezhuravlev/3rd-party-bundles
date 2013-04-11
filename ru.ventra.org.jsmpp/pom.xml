@@ -9,7 +9,7 @@
 
     <groupId>com.googlecode.jsmpp</groupId>
     <artifactId>ru.ventra.org.jsmpp</artifactId>
-    <version>2.2.0</version>
+    <version>2.2.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>Java SMPP API - OSGi bundle</name>
