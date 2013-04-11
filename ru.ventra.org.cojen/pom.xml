@@ -5,7 +5,7 @@
     <parent>
         <groupId>ru.ventra.ebr</groupId>
         <artifactId>ru.ventra.ebr.bundle</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <groupId>org.cojen</groupId>
@@ -21,6 +21,10 @@
         <original.artifactId>cojen</original.artifactId>
         <original.version>2.2.3</original.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
+    </scm>
 
     <dependencies>
         <dependency>

@@ -5,7 +5,7 @@
     <parent>
         <groupId>ru.ventra.ebr</groupId>
         <artifactId>ru.ventra.ebr.bundle</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <groupId>org.postgresql</groupId>
@@ -21,6 +21,10 @@
         <javax.transaction>1.1.0</javax.transaction>
         <javax.xml.stream>1.0.1</javax.xml.stream>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
+    </scm>
 
     <dependencyManagement>
         <dependencies>

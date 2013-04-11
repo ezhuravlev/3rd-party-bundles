@@ -4,7 +4,7 @@
     <parent>
         <groupId>ru.ventra.ebr</groupId>
         <artifactId>ru.ventra.ebr.bundle</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <groupId>com.googlecode.jsmpp</groupId>
@@ -23,6 +23,10 @@
         <org.slf4j>1.5.11</org.slf4j>
         <org.testng>5.14.10</org.testng>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
