@@ -18,7 +18,7 @@
     <properties>
         <original.groupId>com.googlecode.jsmpp</original.groupId>
         <original.artifactId>jsmpp</original.artifactId>
-        <original.version>2.2.0a</original.version>
+        <original.version>2.2.0b</original.version>
 
         <org.slf4j>1.5.11</org.slf4j>
         <org.testng>5.14.10</org.testng>
