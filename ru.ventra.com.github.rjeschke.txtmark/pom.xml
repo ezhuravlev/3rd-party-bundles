@@ -9,7 +9,7 @@
 
     <groupId>com.github.rjeschke</groupId>
     <artifactId>ru.ventra.com.github.rjeschke.txtmark</artifactId>
-    <version>0.8.0</version>
+    <version>0.8.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>Txtmark - OSGi bundle</name>
