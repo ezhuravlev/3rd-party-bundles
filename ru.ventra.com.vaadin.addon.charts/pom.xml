@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.ventra.ebr</groupId>
+        <artifactId>ru.ventra.ebr.bundle</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <groupId>com.vaadin.addon</groupId>
+    <artifactId>ru.ventra.ru.ventra.com.vaadin.addon.charts</artifactId>
+    <version>1.0.0</version>
+    <packaging>bundle</packaging>
+
+    <name>Vaadin Charts Addon - OSGi bundle</name>
+
+    <properties>
+        <original.groupId>com.vaadin.addon</original.groupId>
+        <original.artifactId>vaadin-charts</original.artifactId>
+        <original.version>1.0.0</original.version>
+    </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${original.groupId}</groupId>
+                <artifactId>${original.artifactId}</artifactId>
+                <version>${original.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-server</artifactId>
+                <version>${com.vaadin}</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>${original.groupId}</groupId>
+            <artifactId>${original.artifactId}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${original.groupId}</groupId>
+            <artifactId>${original.artifactId}</artifactId>
+            <version>${original.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            com.vaadin.addon.charts.*;version=${project.version}
+                        </Export-Package>
+                        <Import-Package>
+                            com.vaadin.*,
+                            *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>ru.ventra.ebr.public</id>
+            <name>Ventra Enterprise Bundle Repository - Public Releases</name>
+            <url>https://ebr.ventra.ru/public</url>
+        </repository>
+    </repositories>
+</project>
