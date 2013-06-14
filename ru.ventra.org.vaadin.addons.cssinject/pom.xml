@@ -9,7 +9,7 @@
 
     <groupId>org.vaadin.addons</groupId>
     <artifactId>ru.ventra.org.vaadin.addons.cssinject</artifactId>
-    <version>2.0.3</version>
+    <version>2.0.4-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>Vaadin Charts Addon - OSGi bundle</name>
