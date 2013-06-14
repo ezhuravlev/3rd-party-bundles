@@ -8,7 +8,7 @@
     </parent>
 
     <groupId>com.vaadin.addon</groupId>
-    <artifactId>ru.ventra.ru.ventra.com.vaadin.addon.charts</artifactId>
+    <artifactId>ru.ventra.com.vaadin.addon.charts</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
