@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.ventra.ebr</groupId>
+        <artifactId>ru.ventra.ebr.bundle</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>ru.ventra.org.springframework.ldap</artifactId>
+    <version>1.3.2.RELEASE-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+
+    <name>Spring LDAP</name>
+    <description>org.springframework.ldap</description>
+
+    <properties>
+        <original.groupId>org.springframework.ldap</original.groupId>
+        <original.artifactId>spring-ldap-core</original.artifactId>
+        <original.version>1.3.2.RELEASE</original.version>
+    </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ventra/3rd-party-bundles.git</connection>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>${original.groupId}</groupId>
+            <artifactId>${original.artifactId}</artifactId>
+            <version>${original.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${original.groupId}</groupId>
+            <artifactId>${original.artifactId}</artifactId>
+            <version>${original.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            org.springframework.ldap.*; version=${project.version},
+                            org.springframework.transaction.compensating.*
+                        </Export-Package>
+                        <Import-Package>
+                            com.sun.jndi.ldap;resolution:=optional,
+                            com.sun.jndi.ldap.ctl;resolution:=optional,
+                            org.apache.commons.pool;resolution:=optional,
+                            org.apache.commons.pool.impl;resolution:=optional,
+                            org.springframework.orm.hibernate3;resolution:=optional,
+                            org.springframework.dao;resolution:=optional,
+                            org.springframework.jdbc.datasource;resolution:=optional,
+                            org.springframework.transaction;resolution:=optional,
+                            org.springframework.transaction.support;resolution:=optional,
+                            *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>ru.ventra.ebr.public</id>
+            <name>Ventra Enterprise Bundle Repository - Public Releases</name>
+            <url>https://ebr.ventra.ru/public</url>
+        </repository>
+    </repositories>
+</project>
