@@ -50,7 +50,8 @@
                     <instructions>
                         <Export-Package>
                             org.springframework.ldap.*; version=${project.version},
-                            org.springframework.transaction.compensating.*
+                            org.springframework.transaction.compensating,
+                            org.springframework.transaction.compensating.support
                         </Export-Package>
                         <Import-Package>
                             com.sun.jndi.ldap;resolution:=optional,
